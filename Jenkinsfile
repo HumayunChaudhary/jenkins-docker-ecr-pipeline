@@ -4,7 +4,7 @@ pipeline {
         stage ('Test stage') {
             steps {
                 sh '''
-                    echo "Welcome to Jenkinsfile" > testfile.txt
+                    echo "This is Jenkinsfile" > testfile.txt
                 '''
             }
         }
