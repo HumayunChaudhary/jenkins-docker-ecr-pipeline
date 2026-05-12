@@ -1,10 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage ('Test stage') {
+        stage ('Frontend image building') {
             steps {
                 sh '''
-                    echo "This is Jenkinsfile" > testfile.txt
+                    cd frontend/
+                    docker build -t humayun27/frontend:$GIT_COMMIT .
+                '''
+            }
+        }
+
+        stage ('Backend image building') {
+            steps {
+                sh '''
+                    cd backend/
+                    docker build -t humayun27/backend:$GIT_COMMIT .
                 '''
             }
         }
