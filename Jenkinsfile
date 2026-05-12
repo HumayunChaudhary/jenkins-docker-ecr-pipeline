@@ -1,21 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage ('Frontend image building') {
+       
+        stage ('Docker test') {
             steps {
-                sh '''
-                    cd frontend/
-                    docker build -t humayun27/frontend:$GIT_COMMIT .
-                '''
-            }
-        }
-
-        stage ('Backend image building') {
-            steps {
-                sh '''
-                    cd backend/
-                    docker build -t humayun27/backend:$GIT_COMMIT .
-                '''
+                sh 'docker ps > testfile.txt'
             }
         }
     }
