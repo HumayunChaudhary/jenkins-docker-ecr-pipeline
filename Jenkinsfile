@@ -40,19 +40,14 @@ pipeline {
         }
 
         stage ('Push Images') {
-            parallel {
-                stage ('Push frontend') {
-                    steps {
-                        sh 'docker push $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT'
-                    }
-                }
-                stage ('Push backend') {
-                    steps {
-                        sh 'docker push $ECR_REGISTRY/demo_app:backend-$GIT_COMMIT'
-                    }
+            stage ('Push frontend') {
+                steps {
+                    sh '''
+                        docker push $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT
+                        docker push $ECR_REGISTRY/demo_app:backend-$GIT_COMMIT
+                    '''
                 }
             }
-
         }
     }
 }
