@@ -39,7 +39,7 @@ pipeline {
            } 
         }
 
-        stage ('Push Images') {
+        stage ('Push Images to ECR') {
             steps {
                 sh '''
                     docker push $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT
