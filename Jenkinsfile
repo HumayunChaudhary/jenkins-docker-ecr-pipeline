@@ -40,13 +40,11 @@ pipeline {
         }
 
         stage ('Push Images') {
-            stage ('Push frontend') {
-                steps {
-                    sh '''
-                        docker push $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT
-                        docker push $ECR_REGISTRY/demo_app:backend-$GIT_COMMIT
-                    '''
-                }
+            steps {
+                sh '''
+                    docker push $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT
+                    docker push $ECR_REGISTRY/demo_app:backend-$GIT_COMMIT
+                '''
             }
         }
     }
