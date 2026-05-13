@@ -23,7 +23,7 @@ pipeline {
                     steps {
                         sh '''
                             cd frontend/
-                            docker build -t $ECR_REGISTRY/frontend:$GIT_COMMIT .
+                            docker build -t $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT .
                         '''
                     }
                 }
@@ -32,7 +32,7 @@ pipeline {
                     steps {
                         sh '''
                             cd backend/
-                            docker build -t $ECR_REGISTRY/backend:$GIT_COMMIT .
+                            docker build -t $ECR_REGISTRY/demo_app:backend-$GIT_COMMIT .
                         '''
                     }
                 }
@@ -43,12 +43,12 @@ pipeline {
             parallel {
                 stage ('Push frontend') {
                     steps {
-                        sh 'docker push $ECR_REGISTRY/frontend:$GIT_COMMIT'
+                        sh 'docker push $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT'
                     }
                 }
                 stage ('Push backend') {
                     steps {
-                        sh 'docker push $ECR_REGISTRY/backend:$GIT_COMMIT'
+                        sh 'docker push $ECR_REGISTRY/demo_app:backend-$GIT_COMMIT'
                     }
                 }
             }
