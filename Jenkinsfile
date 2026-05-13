@@ -23,7 +23,7 @@ pipeline {
                     steps {
                         sh '''
                             cd frontend/
-                            docker build -t humayun27/frontend:$GIT_COMMIT .
+                            docker build -t $ECR_REGISTRY/frontend:$GIT_COMMIT .
                         '''
                     }
                 }
@@ -32,7 +32,7 @@ pipeline {
                     steps {
                         sh '''
                             cd backend/
-                            docker build -t humayun27/backend:$GIT_COMMIT .
+                            docker build -t $ECR_REGISTRY/backend:$GIT_COMMIT .
                         '''
                     }
                 }
