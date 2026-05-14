@@ -150,7 +150,6 @@ backend-a1b2c3d
 This provides:
 
 - Traceability
-- Immutable deployments
 - Easier rollback capability
 - Version-specific deployments
 
@@ -181,7 +180,7 @@ Frontend Nginx proxies API requests to the backend service using Cloud Map DNS.
 server {
     listen 80;
 
-    resolver 10.0.0.2 valid=10s ipv6=off;
+    resolver 10.0.0.2 valid=10s ipv6=off;     # IP address of the VPC DNS Resolver
 
     location / {
         root /usr/share/nginx/html;
