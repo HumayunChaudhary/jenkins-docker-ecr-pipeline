@@ -39,7 +39,7 @@ pipeline {
            } 
         }
 
-        stage ('Push Images to the ECR') {
+        stage ('Push Images to ECR') {
             steps {
                 sh '''
                     docker push $ECR_REGISTRY/demo_app:frontend-latest
