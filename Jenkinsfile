@@ -23,7 +23,7 @@ pipeline {
                     steps {
                         sh '''
                             cd frontend/
-                            docker build -t $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT .
+                            docker build -t $ECR_REGISTRY/demo_app:frontend-latest .
                         '''
                     }
                 }
@@ -32,7 +32,7 @@ pipeline {
                     steps {
                         sh '''
                             cd backend/
-                            docker build -t $ECR_REGISTRY/demo_app:backend-$GIT_COMMIT .
+                            docker build -t $ECR_REGISTRY/demo_app:backend-latest .
                         '''
                     }
                 }
@@ -42,8 +42,8 @@ pipeline {
         stage ('Push Images to the ECR') {
             steps {
                 sh '''
-                    docker push $ECR_REGISTRY/demo_app:frontend-$GIT_COMMIT
-                    docker push $ECR_REGISTRY/demo_app:backend-$GIT_COMMIT
+                    docker push $ECR_REGISTRY/demo_app:frontend-latest
+                    docker push $ECR_REGISTRY/demo_app:backend-latest
                 '''
             }
         }
